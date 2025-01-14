@@ -1,0 +1,33 @@
+Key pass: 123456
+CSR pass: 1234567
+
+Key: openssl genrsa -des3 -out server.key 2048
+CSR: openssl req -new -key server.key -sha256 -out server.csr
+CRT: openssl x509 -req -days 365 -in server.csr -signkey server.key -sha256 -out server.crt
+PEM: openssl x509 -in server.crt -out server.pem -outform PEM
+CER: openssl x509 -in server.pem -outform der -out server.cer
+
+
+
+
+
+
+
+
+
+
+From GPT
+
+
+# Generate a new private key
+openssl genrsa -out server.key 2048
+
+# Generate a new CSR using the updated config file
+openssl req -new -key server.key -out server.csr -config openssl.cnf
+
+# Generate the self-signed certificate with the SANs included
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt -extfile openssl.cnf -extensions req_ext
+
+openssl x509 -in server.crt -text -noout
+
+openssl x509 -outform der -in server.crt -out your_certificate.cer
