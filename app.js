@@ -44,7 +44,8 @@ app.get('/cert-hash', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
-    res.send('Hello, this is the SSL certificate server! and I am DK');
+    //res.send('Hello, this is the SSL certificate server! and I am DK');
+    res.send("<html><head><title>Hello World</title></head><body><h1>Hello, World! DK</h1></body></html>");
 });
 
 const sslServer = https.createServer(options, app);
